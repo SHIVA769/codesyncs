@@ -1,4 +1,4 @@
-import { DeviceSettings, useCall, VideoPreview, CallState } from "@stream-io/video-react-sdk";
+import { DeviceSettings, useCall, VideoPreview } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
 import { CameraIcon, MicIcon, SettingsIcon } from "lucide-react";
@@ -25,7 +25,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
   }, [isMicDisabled, call.microphone]);
 
   const handleJoin = async () => {
-    if (isJoining || call.state === CallState.JOINED) return; // Corrected type comparison
+    if (isJoining || call.state === "joined") return; // Corrected type comparison
     setIsJoining(true);
 
     try {
@@ -115,7 +115,7 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
                     className="w-full"
                     size="lg"
                     onClick={handleJoin}
-                    disabled={isJoining || call.state === CallState.JOINED}
+                    disabled={isJoining || call.state === "joined"}
                   >
                     {isJoining ? "Joining..." : "Join Meeting"}
                   </Button>
